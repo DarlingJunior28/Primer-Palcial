@@ -1,6 +1,7 @@
 name: Deploy to Surge.sh
 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -18,5 +19,5 @@ jobs:
 
       - name: Deploy to Surge
         env:
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-        run: surge --project ./ --domain jagged-drawer.surge.sh
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}  # Accede al secreto de manera segura
+        run: surge --project ./ --domain jagged-drawer.surge.sh --token $SURGE_TOKEN
